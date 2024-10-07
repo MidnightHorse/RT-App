@@ -102,41 +102,7 @@ vec3 Mesh::Normal(const Ray& ray, const Hit& hit) const
 Hit Mesh::Intersect_Triangle(const Ray& ray, int tri) const
 {
     Debug_Scope scope;
-    Hit hit;
-    hit.dist = std::numeric_limits<double>::infinity();
-    //hit.triangle = tri;
-    ivec3 cur_triang = triangles[tri];
-    vec3 A = vertices[cur_triang[0]];
-    vec3 B = vertices[cur_triang[1]];
-    vec3 C = vertices[cur_triang[2]];
-    //vec3 IPT = ray.Point(hit.dist);
-    vec3 u = C - A;
-    vec3 v = B - A;
-    
-    vec3 rayW = ray.endpoint - A;
-    vec3 n = cross(v, u).normalized();
-    double denominator = dot(n, ray.direction);
-    if(abs(denominator) < small_t){
-        return hit;
-    }
-    double dist = -dot(n, rayW) / denominator;
-    if(dist < small_t || dist > hit.dist){
-        return hit;
-    }
-    vec3 IP = ray.Point(dist);
-    vec3 y = IP - A;
-
-    double denominator2 = dot(cross(u,v), n);
-    double Gamma = dot(cross(u, y), n)/ denominator2;
-    double Beta = dot(cross(y, v), n)/ denominator2;
-    double Alpha = 1 - Beta - Gamma;
-
-    if(Alpha > -weight_tol && Beta > -weight_tol && Gamma > -weight_tol){
-        hit.dist = dist;
-        hit.triangle = tri;
-        return hit;
-    }
-    return hit;
+    //Nope
 }
 
 std::pair<Box,bool> Mesh::Bounding_Box(int part) const
