@@ -22,7 +22,6 @@ Shade_Surface(const Render_World& render_world,const Ray& ray,const Hit& hit,
     const vec3& intersection_point,const vec3& normal,int recursion_depth) const
 {
     Debug_Scope scope;
-    TODO;
     std::pair<Shaded_Object,Hit> MERGED;
     //vec3 co = this->Shade_Surface(render_world, ray, MERGED.second, intersection_point, normal, recursion_depth);
     double n1 = 1.0;
