@@ -37,13 +37,13 @@ Shade_Surface(const Render_World& render_world,const Ray& ray,const Hit& hit,
         n = normal;
     }
     
-    double indices_ratio = n_1 / n_2;
+    double index_ratio = n_1 / n_2;
     vec3 v = -ray.direction;
     double costheta_1 = dot(n, v);
-    double sintheta_2_squared = pow(indices_ratio, 2) * (1 - pow(costheta_1, 2));
+    double sintheta_2_squared = pow(index_ratio, 2) * (1 - pow(costheta_1, 2));
     double costheta_2 = sqrt(1 - sintheta_2_squared);
     double sintheta_1 = sqrt(1 - pow(costheta_1, 2));
-    double sintheta_2 = indices_ratio * sintheta_1;
+    double sintheta_2 = index_ratio * sintheta_1;
     vec3 b = (1 / sintheta_1) * (v - costheta_1 * n);
     vec3 t = -costheta_2 * n - sintheta_2 * b;
     Ray reflected_ray(intersection_point, ray.direction - 2 * dot(ray.direction, normal) * normal);
